@@ -29,28 +29,28 @@ print(version.get())
 
 # /components
 components = cachet.Components(endpoint=ENDPOINT, api_token=API_TOKEN)
-print(components.get())
 new_component = json.loads(components.post(name='Test component',
                                            status=1,
                                            description='Test component'))
+print(components.get())
 components.put(id=new_component['id'], description='Updated component')
 print(components.get(id=new_component['id']))
 components.delete(id=new_component['id'])
 
 # /components/groups
 groups = cachet.Groups(endpoint=ENDPOINT, api_token=API_TOKEN)
-print(groups.get())
 new_group = json.loads(groups.post(name='Test group'))
+print(groups.get())
 groups.put(id=new_group['id'], name='Updated group')
 print(groups.get(id=new_group['id']))
 groups.delete(new_group['id'])
 
 # /incidents
 incidents = cachet.Incidents(endpoint=ENDPOINT, api_token=API_TOKEN)
-print(incidents.get())
 new_incident = json.loads(incidents.post(name='Test incident',
                                          message='Houston, we have a problem.',
                                          status=1))
+print(incidents.get())
 incidents.put(id=new_incident['id'],
               message="There's another problem, Houston.")
 print(incidents.get(id=new_incident['id']))
@@ -59,11 +59,11 @@ incidents.delete(id=new_incident['id'])
 # /metrics
 # /metrics/points
 metrics = cachet.Metrics(endpoint=ENDPOINT, api_token=API_TOKEN)
-print(metrics.get())
 new_metric = json.loads(metrics.post(name='Test metric',
                                      suffix='Numbers per hour',
                                      description='How many numbers per hour',
                                      default_value=0))
+print(metrics.get())
 print(metrics.get(id=new_metric['id']))
 
 points = cachet.Points(endpoint=ENDPOINT, api_token=API_TOKEN)
