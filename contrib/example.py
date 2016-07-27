@@ -66,3 +66,8 @@ new_point = json.loads(points.post(id=new_metric['id'], value=5))
 print(points.get(metric_id=new_metric['id'], point_id=new_point['id']))
 points.delete(metric_id=new_metric['id'], point_id=new_point['id'])
 metrics.delete(id=new_metric['id'])
+
+# /subscribers
+subscribers = cachet.Subscribers(endpoint=ENDPOINT, api_token=API_TOKEN)
+new_subscriber = json.loads(subscribers.post(email='test@test.org'))
+subscribers.delete(id=new_subscriber['id'])

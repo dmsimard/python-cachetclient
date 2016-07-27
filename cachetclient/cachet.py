@@ -217,3 +217,22 @@ class Points(Cachet):
         check_required_args(required_args, kwargs)
 
         return self._post('metrics/%s/points' % kwargs['id'], data=kwargs)
+
+
+class Subscribers(Cachet):
+    def __init__(self, **kwargs):
+        super(Subscribers, self).__init__(**kwargs)
+
+    @api_token_required
+    def delete(self, id):
+        return self._delete('subscribers/%s' % id)
+
+    def get(self, **kwargs):
+            return self._get('subscribers', data=kwargs)
+
+    @api_token_required
+    def post(self, **kwargs):
+        required_args = ['email']
+        check_required_args(required_args, kwargs)
+
+        return self._post('subscribers', data=kwargs)
