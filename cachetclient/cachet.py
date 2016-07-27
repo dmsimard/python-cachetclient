@@ -201,15 +201,11 @@ class Points(Cachet):
     def delete(self, metric_id, point_id):
         return self._delete('metrics/%s/points/%s' % (metric_id, point_id))
 
-    def get(self, metric_id=None, point_id=None, **kwargs):
+    def get(self, metric_id=None, **kwargs):
         if metric_id is None:
             raise AttributeError('metric_id is required to get metric points.')
 
-        if point_id is not None:
-            return self._get('metrics/%s/points' % metric_id, data=kwargs)
-        else:
-            return self._get('metrics/%s/points/%s' % (metric_id, point_id),
-                             data=kwargs)
+        return self._get('metrics/%s/points' % metric_id, data=kwargs)
 
     @api_token_required
     def post(self, **kwargs):
