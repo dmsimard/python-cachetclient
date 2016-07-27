@@ -3,6 +3,9 @@ About
 python-cachetclient_ is a client and library that can be used to communicate
 with the Cachet_ API.
 
+Disclaimer: This is a work in progress. Please feel free to provide feedback
+and contribute to the project !
+
 .. _python-cachetclient: https://github.com/dmsimard/python-cachetclient
 .. _Cachet: https://cachethq.io/
 
