@@ -47,7 +47,6 @@ class CachetClient(object):
         # If we're sending data, make sure it's json encoded
         if 'data' in kwargs:
             kwargs['data'] = json.dumps(kwargs['data'])
-            print(kwargs['data'])
 
         resp = self.http.request(method, url, **kwargs)
         if not resp.ok:
