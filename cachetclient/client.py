@@ -67,12 +67,12 @@ class CachetClient(object):
     def _get(self, path, **kwargs):
         url = "%s/%s" % (self.endpoint, path)
         reponse, data = self._request(url, 'GET', **kwargs)
-        return json.dumps(data['data'], indent=2)
+        return json.dumps(data, indent=2)
 
     def _post(self, path, **kwargs):
         url = "%s/%s" % (self.endpoint, path)
         response, data = self._request(url, 'POST', **kwargs)
-        return json.dumps(data['data'], indent=2)
+        return json.dumps(data, indent=2)
 
     def _put(self, path, **kwargs):
         url = "%s/%s" % (self.endpoint, path)
