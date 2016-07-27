@@ -191,3 +191,29 @@ class Metrics(Cachet):
         check_required_args(required_args, kwargs)
 
         return self._post('metrics', data=kwargs)
+
+
+class Points(Cachet):
+    def __init__(self, **kwargs):
+        super(Points, self).__init__(**kwargs)
+
+    @api_token_required
+    def delete(self, metric_id, point_id):
+        return self._delete('metrics/%s/points/%s' % (metric_id, point_id))
+
+    def get(self, metric_id=None, point_id=None, **kwargs):
+        if metric_id is None:
+            raise AttributeError('metric_id is required to get metric points.')
+
+        if point_id is not None:
+            return self._get('metrics/%s/points' % metric_id, data=kwargs)
+        else:
+            return self._get('metrics/%s/points/%s' % (metric_id, point_id),
+                             data=kwargs)
+
+    @api_token_required
+    def post(self, **kwargs):
+        required_args = ['id', 'value']
+        check_required_args(required_args, kwargs)
+
+        return self._post('metrics/%s/points' % kwargs['id'], data=kwargs)

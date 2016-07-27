@@ -54,10 +54,15 @@ print(incidents.put(id=new_incident['id'],
 incidents.delete(id=new_incident['id'])
 
 # /metrics
+# /metrics/points
 metrics = cachet.Metrics(endpoint=ENDPOINT, api_token=API_TOKEN)
 new_metric = json.loads(metrics.post(name='Test metric',
                                      suffix='Numbers per hour',
                                      description='How many numbers per hour',
                                      default_value=0))
 print(metrics.get(id=new_metric['id']))
+points = cachet.Points(endpoint=ENDPOINT, api_token=API_TOKEN)
+new_point = json.loads(points.post(id=new_metric['id'], value=5))
+print(points.get(metric_id=new_metric['id'], point_id=new_point['id']))
+points.delete(metric_id=new_metric['id'], point_id=new_point['id'])
 metrics.delete(id=new_metric['id'])
