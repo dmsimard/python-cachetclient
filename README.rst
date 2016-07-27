@@ -15,7 +15,7 @@ No documentation for the time being.
 
 TL;DR: See the provided `example file`_.
 
-.. _example file: https://github.com/dmsimard/python-cachetclient/blob/master/examples/example.py
+.. _example file: https://github.com/dmsimard/python-cachetclient/blob/master/contrib/example.py
 
 Installing
 ==========
