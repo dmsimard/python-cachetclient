@@ -14,6 +14,16 @@ TL;DR: See the provided `example file`_.
 
 .. _example file: https://github.com/dmsimard/python-cachetclient/blob/master/examples/example.py
 
+Installing
+==========
+From source::
+
+    pip install git+https://github.com/dmsimard/python-cachetclient
+
+From pypi::
+
+    pip install python-cachetclient
+
 Author
 ======
 David Moreau Simard
