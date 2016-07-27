@@ -166,3 +166,28 @@ class Incidents(Cachet):
         check_required_args(required_args, kwargs)
 
         return self._put('incidents/%s' % kwargs['id'], data=kwargs)
+
+
+class Metrics(Cachet):
+    def __init__(self, **kwargs):
+        super(Metrics, self).__init__(**kwargs)
+
+    @api_token_required
+    def delete(self, id):
+        return self._delete('metrics/%s' % id)
+
+    def get(self, id=None, **kwargs):
+        if id is not None:
+            return self._get('metrics/%s' % id, data=kwargs)
+        else:
+            return self._get('metrics', data=kwargs)
+
+    @api_token_required
+    def post(self, **kwargs):
+        # default values
+        kwargs.setdefault('default_value', kwargs.get('default_value', 0))
+
+        required_args = ['name', 'suffix', 'description', 'default_value']
+        check_required_args(required_args, kwargs)
+
+        return self._post('metrics', data=kwargs)

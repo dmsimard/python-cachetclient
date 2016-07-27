@@ -52,3 +52,12 @@ print(incidents.get(id=new_incident['id']))
 print(incidents.put(id=new_incident['id'],
                     message="There's another problem, Houston."))
 incidents.delete(id=new_incident['id'])
+
+# /metrics
+metrics = cachet.Metrics(endpoint=ENDPOINT, api_token=API_TOKEN)
+new_metric = json.loads(metrics.post(name='Test metric',
+                                     suffix='Numbers per hour',
+                                     description='How many numbers per hour',
+                                     default_value=0))
+print(metrics.get(id=new_metric['id']))
+metrics.delete(id=new_metric['id'])
