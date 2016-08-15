@@ -119,7 +119,7 @@ class Components(Cachet):
         if id is not None:
             return self._get('components/%s' % id)
         else:
-            return self._get('components')
+            return self._get('components', data=kwargs)
 
     @api_token_required
     def post(self, **kwargs):
