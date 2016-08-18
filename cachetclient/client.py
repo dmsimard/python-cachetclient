@@ -30,12 +30,16 @@ class CachetClient(object):
 
         self.api_token = kwargs.get('api_token', None)
         self.timeout = kwargs.get('timeout', None)
+        self.verify = kwargs.get('verify', None)
 
         self.http = requests.Session()
 
     def _request(self, url, method, **kwargs):
         if self.timeout is not None:
             kwargs.setdefault('timeout', self.timeout)
+
+        if self.verify is not None:
+            kwargs.setdefault('verify', self.verify)
 
         kwargs.setdefault('headers', kwargs.get('headers', {}))
         kwargs['headers']['User-Agent'] = self.user_agent
