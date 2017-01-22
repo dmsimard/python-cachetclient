@@ -118,6 +118,10 @@ class Components(Cachet):
         """
         if id is not None:
             return self._get('components/%s' % id)
+        elif 'params' in kwargs:
+            data = dict(kwargs)
+            params = data.pop('params')
+            return self._get('components', data=data, params=params)
         else:
             return self._get('components', data=kwargs)
 
