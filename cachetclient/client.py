@@ -63,7 +63,7 @@ class CachetClient(object):
             body = None
 
         if not self.pagination:
-            if 'meta' in body and 'pagination' in body['meta']:
+            if body is not None and 'meta' in body and 'pagination' in body['meta']:
                 page_info = body['meta']['pagination']
                 if page_info['total'] > page_info['count']:
                     # There are items not displayed in our result
