@@ -31,6 +31,7 @@ class CachetClient(object):
         self.api_token = kwargs.get('api_token', None)
         self.timeout = kwargs.get('timeout', None)
         self.verify = kwargs.get('verify', None)
+        self.pagination = kwargs.get('pagination', False)
 
         self.http = requests.Session()
 
@@ -61,6 +62,15 @@ class CachetClient(object):
         except ValueError:
             body = None
 
+        if not self.pagination:
+            if body is not None and 'meta' in body and 'pagination' in body['meta']:
+                page_info = body['meta']['pagination']
+                if page_info['total'] > page_info['count']:
+                    # There are items not displayed in our result
+                    kwargs.setdefault('params', kwargs.get('params', {}))
+                    kwargs['params']['per_page'] = page_info['total']
+                    return self._request(url, method, **kwargs)
+
         return resp, body
 
     def _delete(self, path, **kwargs):
@@ -70,7 +80,7 @@ class CachetClient(object):
 
     def _get(self, path, **kwargs):
         url = "%s/%s" % (self.endpoint, path)
-        reponse, data = self._request(url, 'GET', **kwargs)
+        response, data = self._request(url, 'GET', **kwargs)
         return json.dumps(data, indent=2)
 
     def _post(self, path, **kwargs):

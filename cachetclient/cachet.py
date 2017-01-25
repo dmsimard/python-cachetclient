@@ -117,7 +117,11 @@ class Components(Cachet):
         https://docs.cachethq.io/docs/get-a-component
         """
         if id is not None:
-            return self._get('components/%s' % id)
+            return self._get('components/%s' % id, data=kwargs)
+        elif 'params' in kwargs:
+            data = dict(kwargs)
+            params = data.pop('params')
+            return self._get('components', data=data, params=params)
         else:
             return self._get('components', data=kwargs)
 
@@ -166,6 +170,10 @@ class Groups(Cachet):
         """
         if id is not None:
             return self._get('components/groups/%s' % id, data=kwargs)
+        elif 'params' in kwargs:
+            data = dict(kwargs)
+            params = data.pop('params')
+            return self._get('components/groups', data=data, params=params)
         else:
             return self._get('components/groups', data=kwargs)
 
@@ -211,6 +219,10 @@ class Incidents(Cachet):
         """
         if id is not None:
             return self._get('incidents/%s' % id, data=kwargs)
+        elif 'params' in kwargs:
+            data = dict(kwargs)
+            params = data.pop('params')
+            return self._get('incidents', data=data, params=params)
         else:
             return self._get('incidents', data=kwargs)
 
