@@ -22,12 +22,12 @@ class CachetClient(object):
         """
         Initialize the class, get the necessary parameters
         """
-        self.user_agent = 'python-cachetclient'
         try:
             self.endpoint = kwargs['endpoint']
         except KeyError:
             raise KeyError('Cachet API endpoint is required')
 
+        self.user_agent = kwargs.get('user_agent', 'python-cachetclient')
         self.api_token = kwargs.get('api_token', None)
         self.timeout = kwargs.get('timeout', None)
         self.verify = kwargs.get('verify', None)
