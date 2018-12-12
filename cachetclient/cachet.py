@@ -353,6 +353,7 @@ class Subscribers(Cachet):
 
         return self._post('subscribers', data=kwargs)
 
+
 class Schedules(Cachet):
     """
     /schedules API endpoint
