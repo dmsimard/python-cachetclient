@@ -352,3 +352,54 @@ class Subscribers(Cachet):
         check_required_args(required_args, kwargs)
 
         return self._post('subscribers', data=kwargs)
+
+
+class Schedules(Cachet):
+    """
+    /schedules API endpoint
+    """
+    def __init__(self, **kwargs):
+        super(Schedules, self).__init__(**kwargs)
+
+    @api_token_required
+    def delete(self, id):
+        """
+        Documentation not yet written.
+        """
+        return self._delete('schedules/%s' % id)
+
+    def get(self, id=None, **kwargs):
+        """
+        Documentation not yet written.
+        """
+        if id is not None:
+            return self._get('schedules/%s' % id, data=kwargs)
+        elif 'params' in kwargs:
+            data = dict(kwargs)
+            params = data.pop('params')
+            return self._get('schedules', data=data, params=params)
+        else:
+            return self._get('schedules', data=kwargs)
+
+    @api_token_required
+    def post(self, **kwargs):
+        """
+        Documentation not yet written.
+        """
+        # default values
+        kwargs.setdefault('enabled', kwargs.get('enabled', True))
+
+        required_args = ['name', 'status', 'scheduled_at']
+        check_required_args(required_args, kwargs)
+
+        return self._post('schedules', data=kwargs)
+
+    @api_token_required
+    def put(self, **kwargs):
+        """
+        Documentation not yet written.
+        """
+        required_args = ['id']
+        check_required_args(required_args, kwargs)
+
+        return self._put('schedules/%s' % kwargs['id'], data=kwargs)
